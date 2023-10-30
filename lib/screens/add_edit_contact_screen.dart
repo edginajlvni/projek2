@@ -72,13 +72,13 @@ class AddEditContactScreen extends StatelessWidget {
                   context.read<ContactProvider>().addContact(newContact);
                 }
 
-                final contact = Contact(
-                  name: name,
-                  email: email,
-                  phone: phone,
-                );
+                // final contact = Contact(
+                //   name: name,
+                //   email: email,
+                //   phone: phone,
+                // );
 
-                context.read<ContactProvider>().addContact(contact);
+                // context.read<ContactProvider>().addContact(contact);
 
                 Navigator.pop(context);
               },

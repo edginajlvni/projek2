@@ -21,17 +21,6 @@ class HomeScreen extends StatelessWidget {
             },
           ),
         ],
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AddEditContactScreen(),
-              ),
-            );
-          },
-          child: const Icon(Icons.add),
-        ),
       ),
       body: Consumer<ContactProvider>(
         builder: (context, provider, child) {
@@ -46,6 +35,15 @@ class HomeScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               final contact = provider.contacts[index];
               return ListTile(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AddEditContactScreen(),
+                      settings: RouteSettings(arguments: contact),
+                    ),
+                  );
+                },
                 title: Text(contact.name),
                 subtitle: Text(contact.email),
                 leading: CircleAvatar(
@@ -61,6 +59,17 @@ class HomeScreen extends StatelessWidget {
             },
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddEditContactScreen(),
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
