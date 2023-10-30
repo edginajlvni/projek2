@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projek2/providers/contact_provider.dart';
-import 'package:projek2/screens/add_edit_contact_screen.dart';
-// ...
-//import 'package:projek2/screens/add_edit_contact_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:projek2/screens/add_edit_contact_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,6 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ...
       appBar: AppBar(
         title: const Text('Home'),
         actions: [
@@ -21,18 +20,8 @@ class HomeScreen extends StatelessWidget {
             },
           ),
         ],
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AddEditContactScreen(),
-              ),
-            );
-          },
-          child: const Icon(Icons.add),
-        ),
       ),
+// ...
       body: Consumer<ContactProvider>(
         builder: (context, provider, child) {
           if (provider.contacts.isEmpty) {
@@ -57,10 +46,30 @@ class HomeScreen extends StatelessWidget {
                     provider.removeContact(contact);
                   },
                 ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AddEditContactScreen(),
+                      settings: RouteSettings(arguments: contact),
+                    ),
+                  );
+                },
               );
             },
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddEditContactScreen(),
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }

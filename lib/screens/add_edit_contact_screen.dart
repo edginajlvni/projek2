@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 class AddEditContactScreen extends StatelessWidget {
   const AddEditContactScreen({Key? key}) : super(key: key);
 
-  static const String routeName = '/add-edit-contact';
-
   @override
+  // ...
+
   Widget build(BuildContext context) {
     final nameController = TextEditingController();
     final emailController = TextEditingController();
@@ -27,7 +27,6 @@ class AddEditContactScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(isEdit ? 'Edit Contact' : 'Add Contact'),
-        // title: const Text('Ad/Edit Contact'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -57,6 +56,7 @@ class AddEditContactScreen extends StatelessWidget {
                 final name = nameController.text;
                 final email = emailController.text;
                 final phone = phoneController.text;
+
                 final newContact = Contact(
                   id: isEdit
                       ? existingContact.id
@@ -71,14 +71,6 @@ class AddEditContactScreen extends StatelessWidget {
                 } else {
                   context.read<ContactProvider>().addContact(newContact);
                 }
-
-                final contact = Contact(
-                  name: name,
-                  email: email,
-                  phone: phone,
-                );
-
-                context.read<ContactProvider>().addContact(contact);
 
                 Navigator.pop(context);
               },
