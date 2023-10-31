@@ -3,11 +3,16 @@ import 'package:projek2/models/contact.dart';
 import 'package:projek2/providers/contact_provider.dart';
 import 'package:provider/provider.dart';
 
-class AddEditContactScreen extends StatelessWidget {
+class AddEditContactScreen extends StatefulWidget {
   const AddEditContactScreen({Key? key}) : super(key: key);
 
   static const String routeName = '/add-edit-contact';
 
+  @override
+  State<AddEditContactScreen> createState() => _AddEditContactScreenState();
+}
+
+class _AddEditContactScreenState extends State<AddEditContactScreen> {
   @override
   Widget build(BuildContext context) {
     final nameController = TextEditingController();
@@ -72,11 +77,12 @@ class AddEditContactScreen extends StatelessWidget {
                   context.read<ContactProvider>().addContact(newContact);
                 }
 
-                // final contact = Contact(
-                //   name: name,
-                //   email: email,
-                //   phone: phone,
-                // );
+                final contact = Contact(
+                  id: DateTime.now().millisecondsSinceEpoch,
+                  name: name,
+                  email: email,
+                  phone: phone,
+                );
 
                 // context.read<ContactProvider>().addContact(contact);
 
